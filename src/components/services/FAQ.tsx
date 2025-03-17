@@ -3,29 +3,46 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import { SparklesIcon } from '@heroicons/react/24/outline';
 
 type FAQItemProps = {
   question: string;
   answer: React.ReactNode;
   isOpen: boolean;
   toggleOpen: () => void;
+  index: number;
 };
 
-const FAQItem = ({ question, answer, isOpen, toggleOpen }: FAQItemProps) => {
+const FAQItem = ({ question, answer, isOpen, toggleOpen, index }: FAQItemProps) => {
+  const gradientClasses = [
+    "from-primary-light to-primary",
+    "from-secondary-light to-secondary",
+    "from-accent to-blue-400",
+    "from-purple-400 to-primary",
+    "from-secondary to-green-400",
+  ];
+  
+  const gradientClass = gradientClasses[index % gradientClasses.length];
+  
   return (
-    <div className="border-b border-neutral-200 last:border-0 py-6 transition-all duration-300">
+    <div className="mb-5 overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
       <button 
         onClick={toggleOpen}
-        className="flex justify-between items-center w-full text-left focus:outline-none"
+        className={`flex justify-between items-center w-full text-left p-5 ${isOpen ? `bg-gradient-to-r ${gradientClass} text-white` : 'bg-white/80 hover:bg-white/90'} transition-all duration-300`}
       >
-        <h3 className="text-lg font-bold pr-8">{question}</h3>
-        <ChevronDownIcon 
-          className={`h-5 w-5 text-primary transition-transform duration-300 flex-shrink-0 ${isOpen ? 'transform rotate-180' : ''}`} 
-        />
+        <h3 className="text-lg font-bold pr-8 flex items-center">
+          {isOpen && <SparklesIcon className="h-5 w-5 mr-2 animate-pulse" />}
+          {question}
+        </h3>
+        <div className={`rounded-full p-1 ${isOpen ? 'bg-white/20' : 'bg-primary/10'} flex items-center justify-center transition-transform duration-500`}>
+          <ChevronDownIcon 
+            className={`h-5 w-5 ${isOpen ? 'text-white' : 'text-primary'} transition-transform duration-500 ${isOpen ? 'transform rotate-180' : ''}`} 
+          />
+        </div>
       </button>
       
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'mt-4 max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="text-neutral-600 space-y-4">
+      <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="bg-white p-6 text-neutral-600 space-y-4 border-t border-neutral-100">
           {answer}
         </div>
       </div>
@@ -34,7 +51,7 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }: FAQItemProps) => {
 };
 
 const ServicesFAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -384,26 +401,57 @@ const ServicesFAQ = () => {
   ];
 
   return (
-    <section className="section bg-neutral-50 relative overflow-hidden">
-      {/* Decorative elements */}
+    <section className="section relative overflow-hidden py-20">
+      {/* Background with gradient and decorative elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-neutral-50 z-0"></div>
+      
+      {/* AI-themed decorative elements */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent"></div>
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full"></div>
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full"></div>
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-xl"></div>
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full blur-xl"></div>
+      
+      {/* Connection nodes pattern */}
+      <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none z-0">
+        <div className="absolute w-full h-full">
+          {/* Connection lines */}
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" strokeWidth="0.1" className="text-primary" />
+            <line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" strokeWidth="0.1" className="text-primary" />
+            <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.1" className="text-primary" />
+            <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" strokeWidth="0.1" className="text-primary" />
+          </svg>
+          
+          {/* Connection nodes */}
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full top-[20%] left-[20%]"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full top-[20%] left-[80%]"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full top-[80%] left-[20%]"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full top-[80%] left-[80%]"></div>
+          <div className="absolute w-3 h-3 bg-secondary/30 rounded-full top-[50%] left-[50%]"></div>
+        </div>
+      </div>
 
       <div className="container relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="inline-block text-sm font-semibold text-primary tracking-wider uppercase mb-3">FAQ</span>
-          <h2 className="mb-6">Häufige Fragen zu unseren Leistungen</h2>
-          <p className="text-lg text-neutral-600">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm text-primary text-sm font-medium mb-6">
+            <SparklesIcon className="h-5 w-5 mr-2" />
+            Alles was Sie wissen müssen
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ihre Fragen zu unseren <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Leistungen</span>
+          </h2>
+          
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             Erfahren Sie mehr über die technischen Details und praktischen Aspekte unserer KI-Automatisierungslösungen.
           </p>
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-xl shadow-md border border-neutral-100">
+          <div className="space-y-5">
             {faqData.map((faq, index) => (
               <FAQItem
                 key={index}
+                index={index}
                 question={faq.question}
                 answer={faq.answer}
                 isOpen={openIndex === index}
@@ -412,13 +460,21 @@ const ServicesFAQ = () => {
             ))}
           </div>
           
-          <div className="mt-10 text-center">
-            <p className="text-neutral-600 mb-6">
-              Haben Sie spezifische Fragen zu unseren Leistungen? Wir beraten Sie gerne individuell.
-            </p>
-            <Link href="/kontakt" className="btn-primary">
-              Beratungsgespräch vereinbaren
-            </Link>
+          <div className="mt-16 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 backdrop-blur-sm shadow-lg">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="mb-6 md:mb-0 text-center md:text-left">
+                <h3 className="text-xl font-bold mb-2">Haben Sie weitere Fragen?</h3>
+                <p className="text-neutral-600">
+                  Wir helfen Ihnen gerne persönlich weiter und beantworten alle Ihre Fragen.
+                </p>
+              </div>
+              <Link href="/kontakt" className="btn-primary flex items-center group">
+                <span>Kontakt aufnehmen</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

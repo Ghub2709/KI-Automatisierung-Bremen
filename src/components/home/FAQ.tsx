@@ -3,29 +3,46 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import { SparklesIcon } from '@heroicons/react/24/outline';
 
 type FAQItemProps = {
   question: string;
   answer: React.ReactNode;
   isOpen: boolean;
   toggleOpen: () => void;
+  index: number;
 };
 
-const FAQItem = ({ question, answer, isOpen, toggleOpen }: FAQItemProps) => {
+const FAQItem = ({ question, answer, isOpen, toggleOpen, index }: FAQItemProps) => {
+  const gradientClasses = [
+    "from-primary-light to-primary",
+    "from-secondary-light to-secondary",
+    "from-accent to-blue-400",
+    "from-purple-400 to-primary",
+    "from-secondary to-green-400",
+  ];
+  
+  const gradientClass = gradientClasses[index % gradientClasses.length];
+  
   return (
-    <div className="border-b border-neutral-200 last:border-0 py-6 transition-all duration-300">
+    <div className="mb-5 overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
       <button 
         onClick={toggleOpen}
-        className="flex justify-between items-center w-full text-left focus:outline-none"
+        className={`flex justify-between items-center w-full text-left p-5 ${isOpen ? `bg-gradient-to-r ${gradientClass} text-white` : 'bg-white/80 hover:bg-white/90'} transition-all duration-300`}
       >
-        <h3 className="text-lg font-bold pr-8">{question}</h3>
-        <ChevronDownIcon 
-          className={`h-5 w-5 text-primary transition-transform duration-300 flex-shrink-0 ${isOpen ? 'transform rotate-180' : ''}`} 
-        />
+        <h3 className="text-lg font-bold pr-8 flex items-center">
+          {isOpen && <SparklesIcon className="h-5 w-5 mr-2 animate-pulse" />}
+          {question}
+        </h3>
+        <div className={`rounded-full p-1 ${isOpen ? 'bg-white/20' : 'bg-primary/10'} flex items-center justify-center transition-transform duration-500`}>
+          <ChevronDownIcon 
+            className={`h-5 w-5 ${isOpen ? 'text-white' : 'text-primary'} transition-transform duration-500 ${isOpen ? 'transform rotate-180' : ''}`} 
+          />
+        </div>
       </button>
       
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'mt-4 max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="text-neutral-600 space-y-4">
+      <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="bg-white p-6 text-neutral-600 space-y-4 border-t border-neutral-100">
           {answer}
         </div>
       </div>
@@ -34,7 +51,7 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }: FAQItemProps) => {
 };
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -58,8 +75,11 @@ const FAQ = () => {
             <li>24/7 Verfügbarkeit für Ihre Kunden ohne Personalmehraufwand</li>
           </ul>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Lassen Sie uns in einem kostenfreien Erstgespräch herausfinden, welche Prozesse in Ihrem Unternehmen automatisiert werden können.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -79,8 +99,11 @@ const FAQ = () => {
             Hinzu kommen Qualitätsverbesserungen und die Möglichkeit, Ihr Geschäft zu skalieren, ohne proportional mehr Personal einstellen zu müssen.
           </p>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Kontaktieren Sie uns für eine individuelle ROI-Berechnung für Ihr Unternehmen.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -106,8 +129,11 @@ const FAQ = () => {
             Sie müssen die KI lediglich nutzen – wir kümmern uns um alles andere.
           </p>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Vereinbaren Sie ein Gespräch, um zu erfahren, wie unkompliziert KI-Automatisierung sein kann.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -138,8 +164,11 @@ const FAQ = () => {
             <li>Terminplanung und Koordination</li>
           </ul>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               In einem kostenfreien Prozess-Audit identifizieren wir gemeinsam Ihre Automatisierungspotenziale.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -163,8 +192,11 @@ const FAQ = () => {
             Erste Ergebnisse sehen Sie bereits nach wenigen Tagen, da wir die Implementierung priorisieren und schrittweise vorgehen.
           </p>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Kontaktieren Sie uns für einen detaillierten Zeitplan für Ihr spezifisches Projekt.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -191,8 +223,11 @@ const FAQ = () => {
             Wir arbeiten ausschließlich mit KI-Anbietern, die höchste Datenschutzstandards garantieren und keine Trainingsdaten aus Kundendaten generieren.
           </p>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Vereinbaren Sie ein Gespräch, um mehr über unsere Datenschutzmaßnahmen zu erfahren.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -218,8 +253,11 @@ const FAQ = () => {
             Dank API-Schnittstellen und maßgeschneiderter Konnektoren können wir auch Systeme anbinden, die keine standardmäßigen Integrationen anbieten.
           </p>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Lassen Sie uns prüfen, wie wir Ihre bestehenden Systeme optimal mit KI erweitern können.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -243,8 +281,11 @@ const FAQ = () => {
             Für jede Automatisierung definieren wir gemeinsam mit Ihnen klare Qualitätsmetriken und Schwellenwerte, bei deren Unterschreitung ein Mensch eingreift.
           </p>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Sprechen Sie mit uns über Ihre Qualitätsanforderungen und erfahren Sie, wie unsere KI diese erfüllt.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -267,8 +308,11 @@ const FAQ = () => {
             In unserer Erfahrung führt KI-Automatisierung zu zufriedeneren Mitarbeitern, da sie sich auf anspruchsvollere Aufgaben konzentrieren können, die ihren Fähigkeiten besser entsprechen und mehr Erfüllung bieten.
           </p>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Lassen Sie uns gemeinsam einen Plan entwickeln, wie KI Ihre Mitarbeiter entlasten und stärken kann.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -291,8 +335,11 @@ const FAQ = () => {
             Wir sind von der Qualität unserer Leistungen überzeugt und möchten Sie durch Resultate überzeugen, nicht durch Verträge binden. Die überwiegende Mehrheit unserer Kunden bleibt langfristig bei uns, weil die KI-Automatisierung messbare Vorteile bringt.
           </p>
           <p className="mt-4">
-            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium">
+            <Link href="/kontakt" className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
               Vereinbaren Sie ein unverbindliches Erstgespräch und testen Sie unsere Leistungen ohne Risiko.
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </Link>
           </p>
         </>
@@ -301,26 +348,57 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="section bg-white relative overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-neutral-50 z-0"></div>
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full"></div>
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full"></div>
+    <section className="section relative overflow-hidden py-20">
+      {/* Background with gradient and decorative elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-neutral-50 z-0"></div>
+      
+      {/* AI-themed decorative elements */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent"></div>
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-xl"></div>
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full blur-xl"></div>
+      
+      {/* Connection nodes pattern */}
+      <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none z-0">
+        <div className="absolute w-full h-full">
+          {/* Connection lines */}
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" strokeWidth="0.1" className="text-primary" />
+            <line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" strokeWidth="0.1" className="text-primary" />
+            <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.1" className="text-primary" />
+            <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" strokeWidth="0.1" className="text-primary" />
+          </svg>
+          
+          {/* Connection nodes */}
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full top-[20%] left-[20%]"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full top-[20%] left-[80%]"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full top-[80%] left-[20%]"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full top-[80%] left-[80%]"></div>
+          <div className="absolute w-3 h-3 bg-secondary/30 rounded-full top-[50%] left-[50%]"></div>
+        </div>
+      </div>
 
       <div className="container relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="inline-block text-sm font-semibold text-primary tracking-wider uppercase mb-3">Häufige Fragen</span>
-          <h2 className="mb-6">Ihre Fragen zur KI-Automatisierung</h2>
-          <p className="text-lg text-neutral-600">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm text-primary text-sm font-medium mb-6">
+            <SparklesIcon className="h-5 w-5 mr-2" />
+            Alles was Sie wissen müssen
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ihre Fragen zur <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">KI-Automatisierung</span>
+          </h2>
+          
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             Hier finden Sie Antworten auf die häufigsten Fragen zu unseren KI-Automatisierungslösungen für Solopreneure und kleine Unternehmen.
           </p>
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-xl shadow-md border border-neutral-100">
+          <div className="space-y-5">
             {faqData.map((faq, index) => (
               <FAQItem
                 key={index}
+                index={index}
                 question={faq.question}
                 answer={faq.answer}
                 isOpen={openIndex === index}
@@ -329,13 +407,21 @@ const FAQ = () => {
             ))}
           </div>
           
-          <div className="mt-10 text-center">
-            <p className="text-neutral-600 mb-6">
-              Haben Sie weitere Fragen? Wir helfen Ihnen gerne persönlich weiter.
-            </p>
-            <Link href="/kontakt" className="btn-primary">
-              Kontakt aufnehmen
-            </Link>
+          <div className="mt-16 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 backdrop-blur-sm shadow-lg">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="mb-6 md:mb-0 text-center md:text-left">
+                <h3 className="text-xl font-bold mb-2">Haben Sie weitere Fragen?</h3>
+                <p className="text-neutral-600">
+                  Wir helfen Ihnen gerne persönlich weiter und beantworten alle Ihre Fragen.
+                </p>
+              </div>
+              <Link href="/kontakt" className="btn-primary flex items-center group">
+                <span>Kontakt aufnehmen</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

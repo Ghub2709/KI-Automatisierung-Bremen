@@ -39,6 +39,9 @@ Erstelle eine professionelle Website für "KI-Automatisierung Bremen", einen Ser
 - Klare visuelle Hierarchie
 - Konsistente Abstandssystematik
 - Fokus auf Konversionsoptimierung
+- Farbverläufe für interaktive Elemente
+- Subtile Animationen für verbesserte Benutzerinteraktion
+- Dekorative Hintergrundelemente mit niedriger Opazität
 
 ## Seitenstruktur & Inhalte
 
@@ -92,6 +95,19 @@ Drei Karten mit den Hauptvorteilen:
 - **Überschrift**: "Lokale KI-Expertise für Bremer Unternehmen"
 - **Text**: "Als in Bremen ansässiges Unternehmen verstehen wir die spezifischen Herausforderungen lokaler Geschäfte und bieten persönliche Betreuung vor Ort."
 - Bild von Bremen oder lokalem Unternehmen
+
+### FAQ-Sektion
+- **Badge**: "Alles was Sie wissen müssen"
+- **Überschrift**: "Ihre Fragen zur KI-Automatisierung"
+- **Text**: "Hier finden Sie Antworten auf die häufigsten Fragen zu unseren KI-Automatisierungslösungen für Solopreneure und kleine Unternehmen."
+- **Design**: 
+  - Alle FAQs initial geschlossen
+  - Farbverläufe für geöffnete FAQ-Elemente
+  - Animierte Übergänge beim Öffnen/Schließen
+  - Visuelle Effekte: SparklesIcon für geöffnete Elemente
+  - Responsive Layout
+  - Hintergrund mit dezenten dekorativen Elementen
+- **CTA-Box**: "Haben Sie weitere Fragen?" mit Button zum Kontaktformular
 
 ### Call-to-Action
 - **Überschrift**: "Bereit für mehr Effizienz in Ihrem Unternehmen?"
@@ -165,6 +181,19 @@ Jede Kategorie enthält:
   - "Projektmanagement-Automatisierung - KI-unterstützte Projektplanung und -überwachung"
 - **Nutzen**: "Zeitersparnis: 6-10 Stunden pro Woche | Qualitätsverbesserung: 30% schnellere Projektabwicklung"
 
+### FAQ-Sektion
+- **Badge**: "Alles was Sie wissen müssen"
+- **Überschrift**: "Ihre Fragen zu unseren Leistungen"
+- **Text**: "Erfahren Sie mehr über die technischen Details und praktischen Aspekte unserer KI-Automatisierungslösungen."
+- **Design**: 
+  - Identisch zur FAQ-Sektion der Homepage
+  - Alle FAQs initial geschlossen
+  - Farbverläufe für geöffnete FAQ-Elemente
+  - Animierte Übergänge beim Öffnen/Schließen
+  - Visuelle Effekte: SparklesIcon für geöffnete Elemente
+  - Konsistentes Layout und Verhalten
+- **CTA-Box**: "Haben Sie weitere Fragen?" mit Button zum Kontaktformular
+
 ### CTA-Sektion
 - **Überschrift**: "Maßgeschneiderte Automatisierungslösungen für Ihr Unternehmen"
 - **Text**: "Jedes Unternehmen ist einzigartig. In einem persönlichen Gespräch ermitteln wir Ihr individuelles Automatisierungspotential."
@@ -225,7 +254,7 @@ DSGVO-konforme Datenschutzerklärung mit Abschnitten zu:
 - Cookies und Tracking
 - Externe Dienste (Calendly etc.)
 
-## Gemeinsame Elemente
+## Gemeinsame UI-Komponenten
 
 ### Header
 - Logo/Textlogo links
@@ -239,6 +268,17 @@ DSGVO-konforme Datenschutzerklärung mit Abschnitten zu:
 - Kontaktdaten
 - Links zu Impressum und Datenschutz
 - Copyright-Hinweis
+
+### FAQ-Komponente
+- Konsistentes Design für alle FAQ-Elemente auf der gesamten Website
+- FAQItem-Komponente mit folgenden Eigenschaften:
+  - Frage und Antwort als Props
+  - Status (geöffnet/geschlossen)
+  - Toggle-Funktion
+  - Index für verschiedene Farbverläufe
+- Animierte Übergänge für verbesserte Benutzerinteraktion
+- Alle FAQ-Elemente standardmäßig geschlossen beim Laden der Seite
+- Responsive Design für optimale Darstellung auf allen Geräten
 
 ## Funktionalitäten
 
@@ -280,5 +320,6 @@ DSGVO-konforme Datenschutzerklärung mit Abschnitten zu:
 - Implementiere zunächst Dummy-Funktionen für E-Mail-Versand
 - Integriere ein einfaches Tracking-System
 - Stelle sicher, dass alle Links korrekt funktionieren
+- Beachte konsistentes Design und Verhalten für wiederkehrende Komponenten
 
 Diese Spezifikation beschreibt die Anforderungen für die KI-Automatisierung-Bremen.de Website als MVP mit 5 Seiten. Die Website dient als Basis für die Kundenakquise via E-Mail-Marketing und kann später um zusätzliche Funktionen wie einen Kundenbereich, Blog oder erweiterte Automatisierungsvorführungen erweitert werden.
