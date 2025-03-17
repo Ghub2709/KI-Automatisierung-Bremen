@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   title: "KI-Automatisierung Bremen | Intelligente Automatisierungslösungen",
   description: "KI-Automatisierung für Bremer Unternehmen. Mehr Zeit für Ihr Kerngeschäft durch intelligente Automatisierung von Prozessen. Lokaler Service in Bremen.",
   keywords: ["KI-Automatisierung", "Bremen", "Prozessautomatisierung", "KI-Lösungen", "Effizienzsteigerung", "Automatisierung", "Künstliche Intelligenz"],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
