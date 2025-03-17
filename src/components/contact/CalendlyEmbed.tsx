@@ -3,10 +3,10 @@
 import React from 'react';
 
 interface CalendlyEmbedProps {
-  url: string;
+  url?: string;
 }
 
-const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({ url }) => {
+const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({ url = "https://calendly.com/ki-automatisierung-bremen/erstgespraech" }) => {
   return (
     <div className="calendly-embed-container h-96">
       <p className="text-center p-8 bg-gray-100 rounded-lg">
