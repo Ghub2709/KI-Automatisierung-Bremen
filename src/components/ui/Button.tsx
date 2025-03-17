@@ -8,6 +8,7 @@ type ButtonProps = {
   href?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   href,
   onClick,
   type = 'button',
+  disabled = false,
 }) => {
   const baseClasses = `btn-${variant} ${className}`;
   
@@ -33,6 +35,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type} 
       className={baseClasses}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
