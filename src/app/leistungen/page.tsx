@@ -10,6 +10,7 @@ import {
   CogIcon
 } from '@heroicons/react/24/outline';
 import ServiceCategory from '@/components/services/ServiceCategory';
+import ServicesFAQ from '@/components/services/FAQ';
 
 export const metadata: Metadata = {
   title: 'Leistungen | KI-Automatisierung Bremen',
@@ -137,7 +138,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-32 bg-neutral-900 relative overflow-hidden">
+      <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden">
         {/* Dynamic AI-themed background elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-dark to-neutral-900"></div>
         
@@ -225,6 +226,9 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <ServicesFAQ />
 
       {/* CTA Section */}
       <section className="section py-20 md:py-28 relative overflow-hidden">

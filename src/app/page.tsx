@@ -5,6 +5,7 @@ import ServicesOverview from '@/components/home/ServicesOverview';
 import Pricing from '@/components/home/Pricing';
 import LocalSection from '@/components/home/LocalSection';
 import CTA from '@/components/home/CTA';
+import FAQ from '@/components/home/FAQ';
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <ServicesOverview />
       <Pricing />
       <LocalSection />
+      <FAQ />
       <CTA />
     </>
   );
