@@ -39,6 +39,20 @@ body {
   }
 }
 
+/* Mobile Text Handling für lange deutsche Wörter */
+@media (max-width: 640px) {
+  h1, h2, h3, p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .container {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
 @layer components {
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;

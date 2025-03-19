@@ -45,7 +45,7 @@ export default function KundenkommunikationServicePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden">
+      <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden max-w-[100vw]">
         {/* Dynamic AI-themed background elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary to-primary-dark"></div>
         
@@ -55,7 +55,7 @@ export default function KundenkommunikationServicePage() {
           <div className="absolute h-56 w-56 rounded-full bg-blue-200 blur-3xl -top-10 right-1/4"></div>
           
           {/* Chat bubble patterns */}
-          <div className="absolute top-0 left-0 w-full h-full grid grid-cols-12 grid-rows-6 gap-4 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full opacity-10">
             {Array.from({length: 15}).map((_, i) => (
               <div key={i} className="rounded-lg border border-white/30" style={{
                 position: 'absolute',
@@ -71,20 +71,20 @@ export default function KundenkommunikationServicePage() {
         </div>
         
         {/* Hero content */}
-        <div className="container relative z-10">
+        <div className="container relative z-10 px-4 sm:px-6">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="md:w-2/3">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-medium mb-6">
-                <span className="inline-block w-3 h-3 rounded-full bg-blue-400 animate-pulse mr-2"></span>
-                Kundenkommunikation & Service
+            <div className="md:w-2/3 w-full">
+              <div className="inline-flex flex-wrap items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-medium mb-6 max-w-full overflow-hidden">
+                <span className="inline-block w-3 h-3 rounded-full bg-blue-400 animate-pulse mr-2 flex-shrink-0"></span>
+                <span className="break-all sm:break-normal">Kundenkommunikation & Service</span>
               </div>
               
-              <h1 className="text-white mb-6">
-                Intelligente <span className="gradient-text font-bold">Kundenkommunikation</span> rund um die Uhr
+              <h1 className="text-white mb-6 break-words hyphens-auto" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
+                Intelligente <span className="gradient-text font-bold">Kunden&shy;kommunikation</span> rund um die Uhr
               </h1>
               
-              <p className="text-xl text-white/80 mb-8">
-                Transformieren Sie Ihre Kundenkommunikation mit KI-gestützten Automatisierungslösungen. 
+              <p className="text-xl text-white/80 mb-8 break-words" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
+                Transformieren Sie Ihre Kunden&shy;kommunikation mit KI-gestützten Automatisierungs&shy;lösungen. 
                 Bieten Sie erstklassigen Service – 24/7, ohne zusätzliches Personal.
               </p>
               
@@ -485,7 +485,7 @@ export default function KundenkommunikationServicePage() {
                     <summary className="flex justify-between items-center font-medium cursor-pointer list-none p-6">
                       <span className="text-lg font-bold text-neutral-800">{faq.question}</span>
                       <span className="transition group-open:rotate-180">
-                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                        <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
                           <path d="M6 9l6 6 6-6"></path>
                         </svg>
                       </span>
