@@ -37,6 +37,7 @@ export default function ServicesPage() {
       iconColor: 'text-primary',
       bgColor: 'bg-blue-50',
       borderColor: 'border-primary/20',
+      href: '/leistungen/kundenkommunikation-service',
     },
     {
       id: 2,
@@ -56,6 +57,7 @@ export default function ServicesPage() {
       iconColor: 'text-secondary',
       bgColor: 'bg-teal-50',
       borderColor: 'border-secondary/20',
+      href: '/leistungen/akquise-vertrieb',
     },
     {
       id: 3,
@@ -75,6 +77,7 @@ export default function ServicesPage() {
       iconColor: 'text-purple-500',
       bgColor: 'bg-purple-50',
       borderColor: 'border-purple-200',
+      href: '/leistungen/produktivitaet-verwaltung',
     },
     {
       id: 4,
@@ -94,6 +97,7 @@ export default function ServicesPage() {
       iconColor: 'text-red-500',
       bgColor: 'bg-red-50',
       borderColor: 'border-red-200',
+      href: '/leistungen/marketing-content',
     },
     {
       id: 5,
@@ -113,6 +117,7 @@ export default function ServicesPage() {
       iconColor: 'text-amber-500',
       bgColor: 'bg-amber-50',
       borderColor: 'border-amber-200',
+      href: '/leistungen/strategische-geschaeftsentwicklung',
     },
     {
       id: 6,
@@ -132,6 +137,7 @@ export default function ServicesPage() {
       iconColor: 'text-accent',
       bgColor: 'bg-green-50',
       borderColor: 'border-accent/20',
+      href: '/leistungen/prozessoptimierung',
     },
   ];
 
@@ -211,17 +217,28 @@ export default function ServicesPage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {serviceCategories.map((category) => (
-              <ServiceCategory
-                key={category.id}
-                icon={category.icon}
-                title={category.title}
-                description={category.description}
-                features={category.features}
-                benefit={category.benefit}
-                iconColor={category.iconColor}
-                bgColor={category.bgColor}
-                borderColor={category.borderColor}
-              />
+              <div key={category.id} className="relative">
+                <ServiceCategory
+                  key={category.id}
+                  icon={category.icon}
+                  title={category.title}
+                  description={category.description}
+                  features={category.features}
+                  benefit={category.benefit}
+                  iconColor={category.iconColor}
+                  bgColor={category.bgColor}
+                  borderColor={category.borderColor}
+                />
+                <Link 
+                  href={category.href} 
+                  className="absolute bottom-6 right-6 inline-flex items-center text-primary-dark hover:text-primary transition-colors duration-200"
+                >
+                  <span className="mr-1">Mehr Details</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -251,16 +268,9 @@ export default function ServicesPage() {
               Jedes Unternehmen ist einzigartig. In einem persönlichen Gespräch ermitteln wir Ihr individuelles Automatisierungspotential.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/kontakt" className="btn-lg bg-white text-primary hover:bg-neutral-100 font-medium shadow-lg hover:shadow-xl transition-all duration-300">
-                Kostenfreies Erstgespräch vereinbaren
-              </Link>
-              <Link href="/kontakt" className="btn-lg bg-transparent text-white border-2 border-white/30 hover:bg-white/10 font-medium">
-                Kontakt aufnehmen
-              </Link>
-            </div>
-            
-            <p className="text-white/60 mt-8">Keine Vertragsbindung. Unverbindliches Erstgespräch.</p>
+            <Link href="/kontakt" className="btn-accent text-base rounded-full px-8 py-4 shadow-lg hover:shadow-xl">
+              Kostenfreies Erstgespräch vereinbaren
+            </Link>
           </div>
         </div>
       </section>

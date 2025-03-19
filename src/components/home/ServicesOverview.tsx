@@ -18,6 +18,7 @@ const ServicesOverview = () => {
       bgColor: 'bg-blue-50',
       iconColor: 'text-primary',
       borderColor: 'border-primary/20',
+      href: '/leistungen/kundenkommunikation-service',
     },
     {
       id: 2,
@@ -26,6 +27,7 @@ const ServicesOverview = () => {
       bgColor: 'bg-teal-50',
       iconColor: 'text-secondary',
       borderColor: 'border-secondary/20',
+      href: '/leistungen/akquise-vertrieb',
     },
     {
       id: 3,
@@ -34,6 +36,7 @@ const ServicesOverview = () => {
       bgColor: 'bg-purple-50',
       iconColor: 'text-purple-500',
       borderColor: 'border-purple-200',
+      href: '/leistungen/produktivitaet-verwaltung',
     },
     {
       id: 4,
@@ -42,6 +45,7 @@ const ServicesOverview = () => {
       bgColor: 'bg-red-50',
       iconColor: 'text-red-500',
       borderColor: 'border-red-200',
+      href: '/leistungen/marketing-content',
     },
     {
       id: 5,
@@ -50,6 +54,7 @@ const ServicesOverview = () => {
       bgColor: 'bg-amber-50',
       iconColor: 'text-amber-500',
       borderColor: 'border-amber-200',
+      href: '/leistungen/strategische-geschaeftsentwicklung',
     },
     {
       id: 6,
@@ -58,6 +63,7 @@ const ServicesOverview = () => {
       bgColor: 'bg-green-50',
       iconColor: 'text-accent',
       borderColor: 'border-accent/20',
+      href: '/leistungen/prozessoptimierung',
     },
   ];
 
@@ -77,7 +83,7 @@ const ServicesOverview = () => {
             <div key={service.id} className={`p-6 rounded-lg border ${service.borderColor} ${service.bgColor} hover:shadow-md transition-all duration-300`}>
               <div className={`${service.iconColor} mb-4`}>{service.icon}</div>
               <h3 className="text-lg font-bold mb-2">{service.title}</h3>
-              <Link href="/leistungen" className="text-sm text-primary hover:text-primary-light flex items-center mt-4">
+              <Link href={service.href} className="text-sm text-primary hover:text-primary-light flex items-center mt-4">
                 Mehr erfahren
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
